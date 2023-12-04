@@ -1,0 +1,82 @@
+/* Start Fonts from Google Fonts */
+/*Google Fonts*/
+@import url('https://fonts.googleapis.com/css?family=Arapey|Cantarell|Comfortaa|Khand|Russo+One|Ubuntu');
+/*End Fonts*/
+
+body {
+  margin: 0px;
+}
+/*
+canvas {
+  border: 1px solid cyan;
+} */
+
+#wrapper_menu{
+  line-height: 0;
+  position: relative;
+}
+#wrapper{
+  line-height: 0;
+  position: relative;
+}
+#menu0{
+  position: relative; left: 0; top: 0; z-index: 4; background-color: black;
+}
+#menu1{
+  position: absolute; left: 0; top: 0; z-index: 5; background-color: transparent;
+}
+
+#lay00{
+  position: relative; left: 0; top: 0; z-index: 0; background-color: black;
+}
+#lay01{
+  position: absolute; left: 0; top: 0; z-index: 1; background-color: transparent;
+}
+#lay02{
+  position: absolute; left: 0; top: 0; z-index: 2; background-color: transparent;
+}
+#lay03{
+  position: absolute; left: 0; top: 0; z-index: 3; background-color: transparent;
+}
+
+.tooltip {
+  padding: 1.3vw;
+  box-sizing: border-box;
+  border-style: solid;
+  border-radius: 1vw;
+  border-width: 0.2vw;
+  border-color: #aaa8;
+  height: 3vw;
+  background-color: rgba(0, 50, 50, 0.5);
+  font-size:1.5vw;
+  font-family: 'Comfortaa', cursive;
+  align-items: baseline;
+  z-index: 6;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 7;
+  top: -5px;
+  left: 110%;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
