@@ -11,6 +11,12 @@ var TICK = 5;
     Proportion tile cell: 0.8
     Canvas measurements: width height
  */
+
+
+
+
+
+
 const grid = new Grid(40,-0.4636476090008061,0.9272952180016122,0.8,canvas.width,canvas.height);
 const sprite_character_kinght = new Sprite(moviment,1,132,86,10,".\\asstes\\img\\characters\\characters_knight_sprites.png","AntonioScalia");
 console.log('θ: ' + grid.defaultAngle);
@@ -66,16 +72,43 @@ function checkSelection(){
   }
 }
 
-function displayTooltip(){
-  let tooltip = createDiv('Id:' + T.id);
-  tooltip.parent("wrapper");
+////FUNCIONAMIENTO DEL TOOLTIP
+let tooltip; // Variable global para el tooltip
+let isDragging = false;
+let offsetX, offsetY;
+
+function displayTooltip() {
+  tooltip = createDiv('Id:' + T.id); // Usa la variable global aquí
   tooltip.id("hovertooltip");
   tooltip.class("tooltip");
   tooltip.position(T.position.xCanvas + grid.lx[0], T.position.yCanvas + grid.lx[1] - 30);
   let span = createSpan(T.tooltip_text);
   span.class("tooltiptext");
-  span.parent("hovertooltip");
+  span.parent(tooltip);
+
+  // Hacer el tooltip arrastrable
+  tooltip.mousePressed(startDragging);
+  tooltip.mouseReleased(stopDragging);
 }
+
+function startDragging() {
+  isDragging = true;
+  offsetX = mouseX - tooltip.position().x;
+  offsetY = mouseY - tooltip.position().y;
+}
+
+function stopDragging() {
+  isDragging = false;
+}
+
+function draw() {
+  if (isDragging && tooltip) {
+    tooltip.position(mouseX - offsetX, mouseY - offsetY);
+  }
+}
+
+
+
 
 window.addEventListener('mousemove',(evt)=>{
   if(Math.abs(evt.movimentX) > 0 || Math.abs(evt.movementY) > 0 ){

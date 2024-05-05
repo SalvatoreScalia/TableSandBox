@@ -50,8 +50,12 @@ canvas {
   background-color: rgba(0, 50, 50, 0.5);
   font-size:1.5vw;
   font-family: 'Comfortaa', cursive;
-  align-items: baseline;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: move;
   z-index: 6;
+  user-select: none;  /* Impide que el texto sea seleccionable */
 }
 
 .tooltip .tooltiptext {
@@ -65,7 +69,9 @@ canvas {
   z-index: 7;
   top: -5px;
   left: 110%;
+  user-select: none;  /* Impide que el texto sea seleccionable */
 }
+
 
 .tooltip .tooltiptext::after {
   content: "";
@@ -80,3 +86,4 @@ canvas {
 .tooltip:hover .tooltiptext {
   visibility: visible;
 }
+
