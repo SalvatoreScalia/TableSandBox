@@ -12,11 +12,20 @@ var TICK = 5;
     Canvas measurements: width height
  */
 const grid = new Grid(40,-0.4636476090008061,0.9272952180016122,0.8,canvas.width,canvas.height);
+/* Sprite_character properties →
+    moviment tree:
+    sclae: escala del dibujo 
+    width: ancho del sprite en pixeles
+    heigth: altura del prite en pixeles
+    quantity of frame rate: cantidad de frames en las cuales no va a dibujar. Mientras mas pequeño el numero mas fps haasta llegar al max frameRate. Si lo normal es 60 fps entonces un numeor de 10 quiere decir que la animación cambiara de frame cada 0.1667 segundos.
+    directory: direccion en el proyecto de la imagen que contiene los sprites.
+    author: el autor de los sprites.
+ */
 const sprite_character_kinght = new Sprite(moviment,1,132,86,10,".\\asstes\\img\\characters\\characters_knight_sprites.png","AntonioScalia");
 console.log('θ: ' + grid.defaultAngle);
 
 function setup() {
-  frameRate(60);
+  frameRate(60);//el juego corre a 60 fps
   //paint the grid
   grid.deploy();
   
@@ -32,7 +41,7 @@ let currentLoopIndex = 0;
 let frame = 0;
 function draw() {
   frame++;
-  if(frame % sprite_character_kinght.q_frameRate == 0){
+  if(frame % sprite_character_kinght.quantity_frameRate == 0){
     drawFrameInMenu(
       sprite_character_kinght.image_,
       sprite_character_kinght.width, 
@@ -68,10 +77,10 @@ function checkSelection(){
 
 function displayTooltip(){
   let tooltip = createDiv('Id:' + T.id);
-  tooltip.parent("wrapper");
+  
   tooltip.id("hovertooltip");
   tooltip.class("tooltip");
-  tooltip.position(T.position.xCanvas + grid.lx[0], T.position.yCanvas + grid.lx[1] - 30);
+  tooltip.position(T.position.xCanvas + grid.vectorUnitX[0], T.position.yCanvas + grid.vectorUnitX[1] - 30);
   let span = createSpan(T.tooltip_text);
   span.class("tooltiptext");
   span.parent("hovertooltip");

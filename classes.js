@@ -1,5 +1,5 @@
 //generates random id;
-function gid(){
+function generateID(){
   let s4 = () => {
     return Math.floor((1 + Math.random()) * 0x10000)
       .toString(16)
@@ -48,7 +48,7 @@ class Player {
 class Chip {
   id;
   constructor(custom_name, type, sprite, properties = {}) {
-    this.id = gid();
+    this.id = generateID();
     this.custom_name = custom_name;
     this.type = type;
     this.sprite = sprite;
@@ -66,7 +66,7 @@ class Tile {
     own_player,
     color_t,
     alpha_t,
-    tooltip_text = 'text_____text',
+    tooltip_text = generateID(),
     custom_name,
     chips = [],
     properties = {},
@@ -74,7 +74,7 @@ class Tile {
     stroke_alpha_t = 0,
     stroke_color_t = 0,
   ) {
-    this.id = gid();
+    this.id = generateID();
     this.position = position;
     this.own_player = own_player;
     this.tooltip_text = tooltip_text;
@@ -99,16 +99,16 @@ class Sprite {
     scale_sprite,
     width,
     height,
-    q_frameRate,
+    quantity_frameRate,
     src,
     author
   ) {
-      this.id = gid();
+      this.id = generateID();
       this.moviment_tree = moviment_tree;
       this.scale_sprite = scale_sprite
       this.width = width;
       this.height = height;
-      this.q_frameRate = q_frameRate;
+      this.quantity_frameRate = quantity_frameRate;
       this.src = src;
       this.author = author;
       this.image_ = new Image();
@@ -148,10 +148,10 @@ class Grid{
   get id(){
     return this.id;
   }
-  get lx(){
+  get vectorUnitX(){
     return math.dotMultiply(math.multiply(this.ROTA, math.multiply(this.TRANSF,[1,0])), this.cell_width);
   }
-  get ly(){
+  get vectorUnitY(){
     return math.dotMultiply(math.multiply(this.ROTA, math.multiply(this.TRANSF,[0,1])),this.cell_height);
   }
   deploy() {
@@ -201,8 +201,8 @@ class Grid{
         tiles[i][j + this.columns].alpha_t = tileAlpha;
       }
     }
-        tiles[3][21].color_t = "red";
-        tiles[3][20].color_t = "blue"; 
+       // tiles[3][21].color_t = "red";
+      //tiles[3][20].color_t = "blue"; 
     return tiles;
   }
   computeHoverTile(tiles, x, y){
@@ -235,14 +235,14 @@ class Grid{
       //4 puntos del quad: asigno el primero con la transformación lineal y la rotación
       //y despues agrego la cantidad unitaria de la transformacion lineal
       //punto(x,y)→punto(x,y)↓punto(x,y)←punto(x,y)
-      let lx = math.dotMultiply(math.multiply(this.ROTA, math.multiply(this.TRANSF,[1,0])), this.cell_width);
+      let vectorUnitX = math.dotMultiply(math.multiply(this.ROTA, math.multiply(this.TRANSF,[1,0])), this.cell_width);
       //console.log('lx: ' + lx);
-      let ly = math.dotMultiply(math.multiply(this.ROTA, math.multiply(this.TRANSF,[0,1])),this.cell_height);
+      let vectorUnitY = math.dotMultiply(math.multiply(this.ROTA, math.multiply(this.TRANSF,[0,1])),this.cell_height);
       //console.log('ly: ' + ly);
 
-      let upright = math.add(upleft,lx);
-      let bottomleft = math.add(upleft,ly);
-      let bottomright = math.add(upright,ly);
+      let upright = math.add(upleft,vectorUnitX);
+      let bottomleft = math.add(upleft,vectorUnitY);
+      let bottomright = math.add(upright,vectorUnitY);
       quad(
         upleft[0], upleft[1],
         upright[0], upright[1],

@@ -65,6 +65,8 @@ canvas {
   z-index: 7;
   top: -5px;
   left: 110%;
+  /* Ajuste para letter-spacing */
+  letter-spacing: 1px;
 }
 
 .tooltip .tooltiptext::after {
